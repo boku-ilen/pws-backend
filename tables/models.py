@@ -37,7 +37,7 @@ class TableSnapshot(models.Model):
     timestamp = models.DateTimeField(null=False, auto_now_add=True,
                                      help_text="Timestamp of this snapshot")
 
-    # TODO: What unit? Wh?
+    # TODO: What unit? W?
     energy_production = models.FloatField(null=False,
                                           help_text="Current energy production by the PV panel")
 
