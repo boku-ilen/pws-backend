@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpRequest, JsonResponse
 
-# Create your views here.
+
+def get_all_tables(request: HttpRequest) -> JsonResponse:
+    return JsonResponse({"test": True})
