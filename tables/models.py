@@ -1,5 +1,6 @@
 from django.db import models
 from enum import Enum
+from django.contrib.postgres.fields import ArrayField
 
 
 class PortType(Enum):
@@ -10,13 +11,16 @@ class PortType(Enum):
 class Table(models.Model):
     """Static definition of a table"""
 
+    # Displayable name
+    name = models.CharField(null=False, max_length=50)
+
     # Geographic location
     location_lat = models.FloatField(null=False,
                                      help_text="Latitude of the table's geographic location")
     location_lon = models.FloatField(null=False,
                                      help_text="Longitude of the table's geographic location")
 
-    ports = models.ArrayField(models.CharField(
+    ports = ArrayField(models.CharField(
         max_length=5,
         choices=[(tag, tag.value) for tag in PortType]
     ), null=False, help_text="Port types")

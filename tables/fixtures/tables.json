@@ -1,0 +1,36 @@
+[
+    {
+        "model": "tables.table",
+        "pk": 1,
+        "fields": {
+            "name": "Adele-Jellinek-Park",
+            "location_lat": 16.325964,
+            "location_lon": 48.212751,
+            "ports": [
+                "USB",
+                "USB",
+                "USB",
+                "USB",
+                "QI",
+                "QI"
+            ]
+        }
+    },
+    {
+        "model": "tables.table",
+        "pk": 2,
+        "fields": {
+            "name": "Schönbornpark",
+            "location_lat": 16.344395,
+            "location_lon": 48.228046,
+            "ports": [
+                "USB",
+                "USB",
+                "USB",
+                "USB",
+                "QI",
+                "QI"
+            ]
+        }
+    }
+]
