@@ -11,10 +11,9 @@ class PortType(Enum):
 class Table(models.Model):
     """Static definition of a table"""
 
-    # Displayable name
-    name = models.CharField(null=False, max_length=50)
+    name = models.CharField(null=False, max_length=50,
+                            help_text="Displayable name")
 
-    # Geographic location
     location_lat = models.FloatField(null=False,
                                      help_text="Latitude of the table's geographic location")
     location_lon = models.FloatField(null=False,
@@ -34,7 +33,7 @@ class TableSnapshot(models.Model):
     table = models.ForeignKey(Table, on_delete=models.PROTECT,
                               help_text="Table which this snapshot refers to")
 
-    timestamp = models.DateTimeField(null=False, auto_now_add=True,
+    timestamp = models.DateTimeField(null=False,
                                      help_text="Timestamp of this snapshot")
 
     # TODO: What unit? W?
