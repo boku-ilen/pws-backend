@@ -15,6 +15,10 @@ def get_all_tables(request: HttpRequest) -> JsonResponse:
 def get_latest_snapshot(request: HttpRequest, table_id: int) -> JsonResponse:
     """Returns the data in the latest snapshot available for the given table."""
 
-    latest_table = TableSnapshot.objects.values().latest("timestamp")
+    try:
+        latest_table = TableSnapshot.objects.filter(
+            table=table_id).values().latest("timestamp")
+    except TableSnapshot.DoesNotExist:
+        return JsonResponse({"success": False})
 
     return JsonResponse(latest_table, safe=False)
