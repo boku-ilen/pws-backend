@@ -1,5 +1,6 @@
 from django.http import HttpRequest, JsonResponse
 from tables.models import Table, TableSnapshot
+from django.forms.models import model_to_dict
 import json
 import datetime
 
@@ -17,7 +18,7 @@ def get_table(request: HttpRequest, table_id: int) -> JsonResponse:
 
     try:
         table = Table.objects.get(id=table_id)
-        return JsonResponse(table, safe=False)
+        return JsonResponse(model_to_dict(table), safe=False)
     except Table.DoesNotExist:
         return JsonResponse({"success": False})
 
@@ -28,7 +29,7 @@ def get_latest_snapshot(request: HttpRequest, table_id: int) -> JsonResponse:
     try:
         latest_table = TableSnapshot.objects.filter(
             table=table_id).values().latest("timestamp")
-        
+
         return JsonResponse(latest_table, safe=False)
     except TableSnapshot.DoesNotExist:
         return JsonResponse({"success": False})
