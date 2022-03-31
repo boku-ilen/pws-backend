@@ -12,16 +12,26 @@ def get_all_tables(request: HttpRequest) -> JsonResponse:
     return JsonResponse(list(tables), safe=False)
 
 
+def get_table(request: HttpRequest, table_id: int) -> JsonResponse:
+    """Returns the static data of one specific table."""
+
+    try:
+        table = Table.objects.get(id=table_id)
+        return JsonResponse(table, safe=False)
+    except Table.DoesNotExist:
+        return JsonResponse({"success": False})
+
+
 def get_latest_snapshot(request: HttpRequest, table_id: int) -> JsonResponse:
     """Returns the data in the latest snapshot available for the given table."""
 
     try:
         latest_table = TableSnapshot.objects.filter(
             table=table_id).values().latest("timestamp")
+        
+        return JsonResponse(latest_table, safe=False)
     except TableSnapshot.DoesNotExist:
         return JsonResponse({"success": False})
-
-    return JsonResponse(latest_table, safe=False)
 
 
 def create_table_snapshot(request: HttpRequest):
