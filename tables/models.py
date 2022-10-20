@@ -36,14 +36,14 @@ class TableSnapshot(models.Model):
     timestamp = models.DateTimeField(null=False,
                                      help_text="Timestamp of this snapshot")
 
-    # TODO: What unit? W?
     energy_production = models.FloatField(null=False,
-                                          help_text="Current energy production by the PV panel")
+                                          help_text="Current energy production by the PV panel in mA")
 
-    # TODO: What unit? Percent?
     battery_charge = models.FloatField(null=False,
-                                       help_text="Current battery charge")
+                                       help_text="Current battery charge (expressed as battery voltage)")
 
-    # TODO: What unit? W?
-    port_usage = ArrayField(models.FloatField(null=False, help_text="Port usage"), null=False,
+    port_usage = ArrayField(models.FloatField(null=False, help_text="Power draw at the USB ports in mA"), null=False,
+                            help_text="For mapping to port types, refer to the ports field of the corresponding table")
+
+    port_voltage = ArrayField(models.FloatField(null=False, help_text="Voltage at the USB ports"), null=False,
                             help_text="For mapping to port types, refer to the ports field of the corresponding table")

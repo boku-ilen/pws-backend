@@ -54,6 +54,7 @@ def create_table_snapshot(request: HttpRequest):
         snapshot.energy_production = data_dict["energy_production"]
         snapshot.battery_charge = data_dict["battery_charge"]
         snapshot.port_usage = data_dict["port_usage"]
+        snapshot.port_voltage = data_dict["port_voltage"]
 
         snapshot.save()
 
