@@ -42,6 +42,8 @@ class TableSnapshot(models.Model):
     battery_charge = models.FloatField(null=False,
                                        help_text="Current battery charge (expressed as battery voltage)")
 
+    temperature = models.FloatField(null=True, help_text="Temperature in °C")
+
     port_usage = ArrayField(models.FloatField(null=False, help_text="Power draw at the USB ports in mA"), null=False,
                             help_text="For mapping to port types, refer to the ports field of the corresponding table")
 

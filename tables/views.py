@@ -55,6 +55,10 @@ def create_table_snapshot(request: HttpRequest):
         snapshot.battery_charge = data_dict["battery_charge"]
         snapshot.port_usage = data_dict["port_usage"]
         snapshot.port_voltage = data_dict["port_voltage"]
+        
+        # Optional temperature
+        if "temperature" in data_dict:
+            snapshot.temperature = data_dict["temperature"]
 
         snapshot.save()
 
